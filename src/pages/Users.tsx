@@ -9,11 +9,6 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [userToken, setUserToken] = useState('');
 
-  const navigate = useNavigate();
-  const redirectUser = () => {
-    navigate("/users");
-  }
-
   const getUserData = async (token: String) => {
     await fetch('http://localhost:8888/auth-api/getUser.php', {
         method: 'GET',
@@ -74,7 +69,7 @@ const deleteUser = async (userId: String) => {
       .then((data) => {
           
           if (data['success'] === 1) {
-              redirectUser()
+              window.location.reload()
           }else{
               setMessage("Request fail!")
           }
